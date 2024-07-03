@@ -1,49 +1,37 @@
 public class find_first_and_last_position_of_element_in_sorted_array {
 
     public static void main(String[] args) {
-
-    }
-    int[] nums = {5,7,7,8,8,10};
-    int target = 8;
-
-        public int[] searchRange ( int[] nums , int target){
-
-            int[] ans = {-1, -1};
-            // check for first occurrence if target first
-            ans[0] = search(nums, target, true);
-            if (ans[0] != -1) {
-                ans[1] = search(nums, target, false);
-            }
-            System.out.println(" ans = " + ans);
-            return ans;
-        }
-
-        // this function just returns the index value of target
-        int search ( int[] nums, int target, boolean findStartIndex){
-            int ans = -1;
-            int start = 0;
-            int end = nums.length - 1;
-            while (start <= end) {
-                // find the middle element
-//            int mid = (start + end) / 2; // might be possible that (start + end) exceeds the range of int in java
-                int mid = start + (end - start) / 2;
-
-                if (target < nums[mid]) {
-                    end = mid - 1;
-                } else if (target > nums[mid]) {
-                    start = mid + 1;
-                } else {
-                    // potential ans found
-                    ans = mid;
-                    if (findStartIndex) {
-                        end = mid - 1;
-                    } else {
-                        start = mid + 1;
-                    }
-                }
-            }
-            return ans;
-        }
+        int[] arr = {1,2,3,4,13,14,15,16,17,18,21,22,23,24,25,26,27};
+        int target = 23;
+        int ans = range(arr,target);
+        System.out.println(ans);
     }
 
+    static int range(int[] arr, int target) {
+        int s = 0, l = 1;
+        if (target > arr[l]) {
+            int temp = l+1;
+            l = l + (l - s + 1) * 2;
+            s = temp + 1;
 
+        }
+        return binarySearch(arr, target, s, l);
+    }
+
+    static int binarySearch(int[] arr, int target, int s, int l) {
+        while (s <= l) {
+            int mid = s + (l - s) / 2;
+
+            if (target < arr[mid]) {
+                l = mid - 1;
+            } else if (target > arr[mid]) {
+                s = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
+
+    }
+
+}
