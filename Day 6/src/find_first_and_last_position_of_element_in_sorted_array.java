@@ -3,16 +3,16 @@ public class find_first_and_last_position_of_element_in_sorted_array {
     public static void main(String[] args) {
         int[] arr = {1,2,3,4,13,14,15,16,17,18,21,22,23,24,25,26,27};
         int target = 23;
-        int ans = range(arr,target);
-        System.out.println(ans);
+
+        System.out.println(ans(arr,target));
     }
 
-    static int range(int[] arr, int target) {
+    static int ans(int[] arr, int target) {
         int s = 0, l = 1;
-        if (target > arr[l]) {
+        while (target > arr[l]) {
             int temp = l+1;
             l = l + (l - s + 1) * 2;
-            s = temp + 1;
+            s = temp;
 
         }
         return binarySearch(arr, target, s, l);
