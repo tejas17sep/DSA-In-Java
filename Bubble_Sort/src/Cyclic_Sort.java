@@ -9,7 +9,7 @@ public class Cyclic_Sort {
     static void cycle(int[] arr){
         int i = 0;
         while(i<arr.length){
-            int correct = arr[i]-1;
+            int correct = arr[i];
             if (arr[i] != arr[correct]){
                 int temp = arr[i];
                 arr[i] = arr[correct];
